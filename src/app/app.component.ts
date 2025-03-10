@@ -2,8 +2,20 @@ import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Amplify } from 'aws-amplify';
 import outputs from '../../amplify_outputs.json';
+import { generateClient } from 'aws-amplify/api';
+import { Schema } from '../../amplify/data/resource';
 
 Amplify.configure(outputs);
+
+const client = generateClient<Schema>();
+
+async function sayHello(){
+  const result = await client.queries.sayHello({
+    name: 'Samuel'
+  });
+
+  console.log('Result', result);
+}
 
 @Component({
   selector: 'app-root',
@@ -14,7 +26,11 @@ Amplify.configure(outputs);
 })
 export class AppComponent implements OnInit {
   ngOnInit(): void {
-   console.log(Amplify.getConfig());
+    console.log(Amplify.getConfig());
   }
-  title = 'mx-amplify-1';
+  title = 'Teste Amplify';
+
+  sayHello(){
+    sayHello();
+  }
 }
