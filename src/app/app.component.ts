@@ -5,6 +5,7 @@ import outputs from '../../amplify_outputs.json';
 import { generateClient } from 'aws-amplify/api';
 import { Schema } from '../../amplify/data/resource';
 import { AmplifyAuthenticatorModule, AuthenticatorService } from '@aws-amplify/ui-angular';
+import { fetchUserAttributes } from 'aws-amplify/auth';
 
 Amplify.configure(outputs);
 
@@ -27,13 +28,18 @@ async function sayHello() {
 })
 export class AppComponent implements OnInit {
   constructor(public authenticator: AuthenticatorService) { }
-
+  nickname: string | undefined = '';
   ngOnInit(): void {
     console.log(Amplify.getConfig());
+
+    const userData =  fetchUserAttributes().then(u => {
+      this.nickname = u.nickname;
+    });
   }
   title = 'Teste Amplify';
 
   sayHello() {
     sayHello();
   }
+
 }
