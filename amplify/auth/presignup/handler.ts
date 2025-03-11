@@ -7,4 +7,6 @@ export const handler : PreSignUpTriggerHandler = async (event) => {
     if(!email.endsWith('@mxm.com.br')){
         throw new Error('E-mail deve ser da MXM.');
     }
+
+    return event;
 };
