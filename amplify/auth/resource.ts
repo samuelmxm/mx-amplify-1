@@ -9,14 +9,14 @@ export const auth = defineAuth({
   loginWith: {
     email: true,
   },
-  userAttributes: {
+ /* userAttributes: {
     nickname: {
       mutable: true,
-      required: false//se colocar um novo atributo com true após deploy inicial dá erro ao fazer o deploy
+      required: true
       
     }
   },
-  
+  */ // se colocar novos atributos após deploy inicial dá erro de deploy
   triggers: {
     preSignUp: preSignUp
   }

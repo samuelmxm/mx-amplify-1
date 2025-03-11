@@ -1,7 +1,11 @@
 import { defineFunction } from "@aws-amplify/backend";
+import { env } from '$amplify/env/sayHello';
 
-export const REGION = "sa-east-1";
-export const TABLE_NAME = "PRODUCTS";
+
+export const REGION = env.REGION || "sa-east-1";
+export const TABLE_NAME = env.TABLE_NAME || "PRODUCTS";
+export const MONGOCN = env.MONGOCN || "";
+
 
 export const sayHello = defineFunction({
     name: 'sayHello',
@@ -11,6 +15,7 @@ export const sayHello = defineFunction({
     },
     environment: {
         REGION,
-        TABLE_NAME
+        TABLE_NAME,
+        MONGOCN
     }
 });
