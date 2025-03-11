@@ -1,1 +1,13 @@
-<button (click)="sayHello()">Olá mundo</button>
+
+
+<amplify-authenticator>
+    <ng-template
+      amplifySlot="authenticated"
+      let-user="user"
+      let-signOut="signOut"
+    >
+      <h1>Welcome {{ user.username }}!</h1>
+      <button (click)="signOut()">Sign Out</button>
+      <button (click)="sayHello()">Olá mundo</button>
+    </ng-template>
+  </amplify-authenticator>

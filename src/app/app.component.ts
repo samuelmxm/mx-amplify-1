@@ -4,6 +4,7 @@ import { Amplify } from 'aws-amplify';
 import outputs from '../../amplify_outputs.json';
 import { generateClient } from 'aws-amplify/api';
 import { Schema } from '../../amplify/data/resource';
+import { AmplifyAuthenticatorModule } from '@aws-amplify/ui-angular';
 
 Amplify.configure(outputs);
 
@@ -20,7 +21,7 @@ async function sayHello(){
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, AmplifyAuthenticatorModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
