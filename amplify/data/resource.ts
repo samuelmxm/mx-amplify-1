@@ -13,9 +13,10 @@ const schema = a.schema({
     name: a.string()
   }).returns(a.string()).handler(a.handler.function(sayHello))
   .authorization((allow) => [allow.publicApiKey()]),
+
   teste: a.query().arguments({
     name: a.string()
-  }).returns(a.json).handler(a.handler.function(teste))
+  }).returns(a.json()).handler(a.handler.function(teste))
   .authorization((allow) => [allow.publicApiKey()])
 });
 
