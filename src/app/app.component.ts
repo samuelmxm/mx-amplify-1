@@ -12,7 +12,7 @@ Amplify.configure(outputs);
 const client = generateClient<Schema>();
 
 async function sayHello() {
-  const result = await client.queries.sayHello({
+  const result = await client.queries.teste({
     name: 'Samuel'
   });
 
@@ -28,22 +28,18 @@ async function sayHello() {
 })
 export class AppComponent implements OnInit {
   constructor(public authenticator: AuthenticatorService) { }
-  nickname: string | undefined = '';
+
   ngOnInit(): void {
     console.log(Amplify.getConfig());
 
-    const userData = fetchUserAttributes().then(u => {
+    /*const userData = fetchUserAttributes().then(u => {
       this.nickname = u.nickname;
-    });
+    });*/
   }
   title = 'Teste Amplify';
 
-  async sayHello() {
-    const result = await client.queries.sayHello({
-      name: 'Samuel'
-    });
-
-    console.log('Result', result);
+ sayHello() {
+sayHello();
   }
 
 }
