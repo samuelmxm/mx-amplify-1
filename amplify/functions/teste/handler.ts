@@ -4,10 +4,10 @@ import { env } from '$amplify/env/teste'; //para gerar o objeto, necessário rod
 import {MongoClient} from 'mongodb';
 type handlerType = Schema['teste']['functionHandler']
 
-
+const client = new MongoClient(env.MONGOCN);
 
 export const handler: Handler = async (event: any, context: any) => {
-    const client = new MongoClient(env.MONGOCN);
+
     const db = await client.db("analise_de_codigo");
     const collection = await db.collection("registro_dependency_check");
     const body = await collection.find().limit(10).toArray();
