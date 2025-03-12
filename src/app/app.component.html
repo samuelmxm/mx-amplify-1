@@ -1,14 +1,27 @@
-
-
 <amplify-authenticator [signUpAttributes]="['nickname']">
-    <ng-template
-      amplifySlot="authenticated"
-      let-user="user"
-      let-signOut="signOut"
-    >
-      <h1>Welcome {{ user.username }}!</h1>
-   
-      <button (click)="signOut()">Sign Out</button>
-      <button (click)="sayHello()">Olá mundo</button>
+    <ng-template amplifySlot="authenticated" let-user="user" let-signOut="signOut">
+        <div class="position-fixed">
+            <button mat-icon-button [matMenuTriggerFor]="opcoes" >
+                <mat-icon>more_vert</mat-icon></button>
+
+            <mat-menu #opcoes="matMenu">
+                <button mat-menu-item routerLink="inventariodecomponentes">
+                    <mat-icon>build</mat-icon>
+                    <span>Inventário de componentes</span>
+                </button>
+
+                <button mat-menu-item (click)="sayHello()">
+                    <mat-icon>add</mat-icon>
+                    <span>Teste</span>
+                </button>
+                <button mat-menu-item (click)="signOut()">
+                    <mat-icon>logout</mat-icon>
+                    <span>Logoff</span>
+                </button>
+            </mat-menu>
+        </div>
+        <div class="maindiv">
+            <router-outlet></router-outlet>
+        </div>
     </ng-template>
-  </amplify-authenticator>
+</amplify-authenticator>
