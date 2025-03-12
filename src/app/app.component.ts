@@ -32,14 +32,18 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     console.log(Amplify.getConfig());
 
-    const userData =  fetchUserAttributes().then(u => {
+    const userData = fetchUserAttributes().then(u => {
       this.nickname = u.nickname;
     });
   }
   title = 'Teste Amplify';
 
-  sayHello() {
-    sayHello();
+  async sayHello() {
+    const result = await client.queries.sayHello({
+      name: 'Samuel'
+    });
+
+    console.log('Result', result);
   }
 
 }

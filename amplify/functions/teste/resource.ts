@@ -1,6 +1,4 @@
 import { defineFunction, secret } from "@aws-amplify/backend";
-//import { env } from '$amplify/env/sayHello';
-
 
 export const teste = defineFunction({
     name: 'teste',
