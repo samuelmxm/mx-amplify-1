@@ -17,6 +17,11 @@ const schema = a.schema({
   teste: a.query().arguments({
     name: a.string()
   }).returns(a.json()).handler(a.handler.function(teste))
+  .authorization((allow) => [allow.publicApiKey()]),
+
+  obterRegistrosPorData: a.query().arguments({
+    name: a.string()
+  }).returns(a.json()).handler(a.handler.function(teste))
   .authorization((allow) => [allow.publicApiKey()])
 });
 

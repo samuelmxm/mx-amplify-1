@@ -1,4 +1,4 @@
-<amplify-authenticator [signUpAttributes]="['nickname']">
+<amplify-authenticator>
     <ng-template amplifySlot="authenticated" let-user="user" let-signOut="signOut">
         <div class="position-fixed">
             <button mat-icon-button [matMenuTriggerFor]="opcoes" >
@@ -8,11 +8,6 @@
                 <button mat-menu-item routerLink="inventariodecomponentes">
                     <mat-icon>build</mat-icon>
                     <span>Inventário de componentes</span>
-                </button>
-
-                <button mat-menu-item (click)="sayHello()">
-                    <mat-icon>add</mat-icon>
-                    <span>Teste</span>
                 </button>
                 <button mat-menu-item (click)="signOut()">
                     <mat-icon>logout</mat-icon>
