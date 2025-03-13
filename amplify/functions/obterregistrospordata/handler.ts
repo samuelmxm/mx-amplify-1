@@ -1,5 +1,5 @@
 //import type { Handler } from 'aws-lambda';
-import { Schema } from '../../../data/resource';
+import { Schema } from '../../data/resource';
 import { env } from '$amplify/env/sayHello';
 import { MongoClient } from 'mongodb';
 type handlerType = Schema['obterRegistrosPorData']['functionHandler']
