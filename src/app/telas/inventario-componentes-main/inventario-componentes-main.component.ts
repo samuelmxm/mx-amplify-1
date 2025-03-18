@@ -6,7 +6,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { RouterModule } from '@angular/router';
 import { InventarioService } from '../../servicos/inventarioService';
 import { RegistroInventarioComponentes } from '../../model/registro-inventario-componentes';
-import { DatePipe } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 export interface PeriodicElement {
   name: string;
@@ -22,12 +23,15 @@ export interface PeriodicElement {
     MatButtonModule,
     MatIconModule,
     RouterModule,
-    
-    DatePipe],
+
+    DatePipe,
+    CommonModule, MatTooltipModule,
+    MatProgressSpinnerModule],
   templateUrl: './inventario-componentes-main.component.html',
   styleUrl: './inventario-componentes-main.component.scss'
 })
 export class InventarioComponentesMainComponent implements OnInit {
+  carregando = false;
   displayedColumns: string[] = [
     //'acoes',
     'data'];
@@ -37,11 +41,13 @@ export class InventarioComponentesMainComponent implements OnInit {
 
   }
   ngOnInit(): void {
+    this.carregando = true;
     this.inventarioService.obterRegistros().subscribe(r => {
       if (r.data) {
         const registros = JSON.parse(r.data as string) as RegistroInventarioComponentes[];
         console.log('Registros', registros);
         this.dataSource = registros;
+        this.carregando = false;
       }
 
     });

@@ -24,6 +24,11 @@ ul {
     overflow-x: hidden;
 }
 
+.limite200{
+    width: 200px;
+    overflow-x: hidden;
+}
+
 .loading-overlay {
     position: fixed;
     top: 0;
@@ -35,4 +40,8 @@ ul {
     justify-content: center;
     align-items: center;
     z-index: 1000;
+  }
+
+  .maindiv{
+    width: 2000px;
   }

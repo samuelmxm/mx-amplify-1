@@ -32,6 +32,7 @@ const schema = a.schema({
 
   obterProjetosDependencyCheck: a.query().arguments({
     id: a.string(),
+    idRegistro: a.string(),
     offset: a.integer(),
   }).returns(a.json()).handler(a.handler.function(obterProjetosDependencyCheck))
   .authorization((allow) => [allow.publicApiKey()]),

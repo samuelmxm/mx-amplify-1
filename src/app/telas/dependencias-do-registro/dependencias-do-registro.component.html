@@ -1,11 +1,14 @@
 <div *ngIf="carregando" class="loading-overlay">
     <mat-spinner></mat-spinner>
 </div>
-<div *ngIf="!inicializando">
+<div class="maindiv" *ngIf="!inicializando">
     <h1>Inventário de componentes - registro de {{dataRegistro | date: 'dd/MM/yyyy HH:mm:ss'}} </h1>
 
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-
+        <ng-container matColumnDef="i">
+            <th mat-header-cell *matHeaderCellDef> </th>
+            <td mat-cell *matCellDef="let row; let i = index"> {{ i + 1 }} </td>
+          </ng-container>
         <!--'nome', 'versa', 'descricao', 'contemvulnerabilidades', 'licenca', 'projetos'-->
         <ng-container matColumnDef="nome">
             <th mat-header-cell *matHeaderCellDef> Componente </th>
@@ -25,7 +28,7 @@
         </ng-container>
         <ng-container matColumnDef="descricao">
             <th mat-header-cell *matHeaderCellDef> Descrição </th>
-            <td mat-cell *matCellDef="let element">{{element.Descricao}} </td>
+            <td mat-cell *matCellDef="let element">       <div class="limite200">{{element.Descricao}}</div> </td>
         </ng-container>
         <ng-container matColumnDef="contemvulnerabilidades">
             <th mat-header-cell *matHeaderCellDef> Contém vulnerabilidades </th>

@@ -19,13 +19,16 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
   styleUrl: './dependencias-do-registro.component.scss'
 })
 export class DependenciasDoRegistroComponent implements OnInit {
-  displayedColumns: string[] = ['nome'
+  displayedColumns: string[] = [
+    'i',
+    'nome'
     , 'versao', 'descricao', 'contemvulnerabilidades'
     , 'licenca'
     , 'projetos'
   ];
   dataSource: Dependencia[] = [];
   dataRegistro: Date = new Date();
+  idRegistro: string = '';
 
   constructor(private route: ActivatedRoute, private inventarioService: InventarioService) { }
 
@@ -33,6 +36,7 @@ export class DependenciasDoRegistroComponent implements OnInit {
     this.carregando = true;
     this.route.queryParams.subscribe(params => {
       const idregistro = params['idregistro'];
+      this.idRegistro = idregistro;
 
       this.inventarioService.obterDependencias(idregistro).subscribe(r => {
         if (r.data) {
@@ -73,7 +77,7 @@ export class DependenciasDoRegistroComponent implements OnInit {
 
   html = '';
   buscarHTML(projeto: string, offset: number) {
-    this.inventarioService.obterHTML(projeto, offset).subscribe(r => {
+    this.inventarioService.obterHTML(projeto, this.idRegistro, offset).subscribe(r => {
       console.log('r', r);
       if (r.data) {
 

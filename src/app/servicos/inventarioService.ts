@@ -16,7 +16,8 @@ export class InventarioService {
         return from(client.queries.obterDependenciasDependencyCheck({ id: id }));
     }  
     
-    public obterHTML(id: string, offset: number) {
-        return from(client.queries.obterProjetosDependencyCheck({ id: id, offset: offset }));
+    public obterHTML(id: string, idRegistro: string, offset: number) {
+        console.log('b', { id: id, idRegistro: idRegistro, offset: offset });
+        return from(client.queries.obterProjetosDependencyCheck({ id: id, idRegistro: idRegistro, offset: offset }));
     }
 }
