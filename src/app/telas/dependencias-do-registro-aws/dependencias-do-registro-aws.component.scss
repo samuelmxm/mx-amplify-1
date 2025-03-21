@@ -1,0 +1,47 @@
+.vermelho{
+    color: red;
+    font-weight: bold;
+}
+
+ul {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 0px;
+    unicode-bidi: isolate;
+}
+
+.lis{
+    height: 100%;
+    overflow-y: scroll;
+}
+
+.limite100{
+    width: 100px;
+    overflow-x: hidden;
+}
+
+.limite200{
+    width: 200px;
+    overflow-x: hidden;
+}
+
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+
+  .maindiv{
+    width: 2000px;
+  }

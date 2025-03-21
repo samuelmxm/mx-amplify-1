@@ -4,6 +4,7 @@ export interface RegistroInventarioComponentes {
     Dependencias: Dependencia[]
 }
 
+
 export interface Dependencia {
     Identificador: boolean,
     Descricao?: string,

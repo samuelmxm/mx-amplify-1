@@ -3,21 +3,25 @@ import { generateClient } from "aws-amplify/api";
 import { Schema } from "../../../amplify/data/resource";
 import { from } from "rxjs";
 
-const client = generateClient<Schema>();
+
 
 @Injectable({ providedIn: 'root' })
 export class InventarioService {
+    client;
+    constructor() {
+        this.client = generateClient<Schema>();
+    }
 
     public obterRegistros() {
-        return from(client.queries.obterRegistrosDependencyCheck());
+        return from(this.client.queries.obterRegistrosDependencyCheck());
     }
 
     public obterDependencias(id: string) {
-        return from(client.queries.obterDependenciasDependencyCheck({ id: id }));
-    }  
-    
+        return from(this.client.queries.obterDependenciasDependencyCheck({ id: id }));
+    }
+
     public obterHTML(id: string, idRegistro: string, offset: number) {
         console.log('b', { id: id, idRegistro: idRegistro, offset: offset });
-        return from(client.queries.obterProjetosDependencyCheck({ id: id, idRegistro: idRegistro, offset: offset }));
+        return from(this.client.queries.obterProjetosDependencyCheck({ id: id, idRegistro: idRegistro, offset: offset }));
     }
 }

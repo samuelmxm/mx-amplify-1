@@ -5,7 +5,7 @@ import { teste } from './functions/teste/resource';
 import { obterRegistrosDependencyCheck } from './functions/obterregistrosdependencycheck/resource';
 import { obterProjetosDependencyCheck } from './functions/obterprojetosdependencycheck/resource';
 import { obterDependenciasDependencyCheck } from './functions/obterdependenciasdependencycheck/resource';
-
+import { registroStore } from './storage/resource';
 /**
  * @see https://docs.amplify.aws/react/build-a-backend/ to add storage, functions, and more
  */
@@ -14,5 +14,6 @@ defineBackend({
   data,
   obterRegistrosDependencyCheck, 
   obterDependenciasDependencyCheck,
-  obterProjetosDependencyCheck
+  obterProjetosDependencyCheck,
+  registroStore
 });
