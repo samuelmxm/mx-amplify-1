@@ -5,13 +5,10 @@
                 <mat-icon>more_vert</mat-icon></button>
 
             <mat-menu #opcoes="matMenu">
-                <button mat-menu-item routerLink="inventariodecomponentes">
-                    <mat-icon>build</mat-icon>
-                    <span>Inventário de componentes - Mongo DB</span>
-                </button>
+
                 <button mat-menu-item routerLink="inventariodecomponentesaws">
                     <mat-icon>build</mat-icon>
-                    <span>Inventário de componentes - DynamoDB + S3</span>
+                    <span>Inventário de componentes</span>
                 </button>
                 <button mat-menu-item (click)="signOut()">
                     <mat-icon>logout</mat-icon>

@@ -27,8 +27,8 @@ import { generateClient } from 'aws-amplify/api';
 })
 export class DependenciasDoRegistroAwsComponent implements OnInit {
   client;
-  constructor(private route: ActivatedRoute) { 
-      this.client = generateClient<Schema>();
+  constructor(private route: ActivatedRoute) {
+    this.client = generateClient<Schema>();
   }
   dataSource: Dependencia[] = [];
   dataRegistro: string = '';
@@ -50,14 +50,13 @@ export class DependenciasDoRegistroAwsComponent implements OnInit {
       this.idRegistro = idregistro;
 
       try {
-        this.client.models.Registros.get({id: idregistro}).then(i => {
-     
-            if(i.data)
-            {
-              console.log('i',i.data);
-              this.dataRegistro =  i.data.createdAt;
-            }
-  
+        this.client.models.Registros.get({ id: idregistro }).then(i => {
+
+          if (i.data) {
+            console.log('i', i.data);
+            this.dataRegistro = i.data.createdAt;
+          }
+
         });
       } catch (error) {
         console.error('error fetching todos', error);
@@ -69,7 +68,7 @@ export class DependenciasDoRegistroAwsComponent implements OnInit {
         from(r.body.text()).subscribe(reg => {
 
           const registro = JSON.parse(reg) as RegistroInventarioComponentes;
-console.log(registro);
+          console.log(registro);
 
           this.dataSource = registro.Dependencias.sort((a, b) => {
             if (a.Nome == b.Nome) {
@@ -100,26 +99,24 @@ console.log(registro);
   }
 
   mostrarHtml(projeto: string) {
-
+    this.carregando = true;
     from(downloadData({
       path: `html/${this.idRegistro}_${projeto}.html`
     }).result).subscribe(r => {
       from(r.body.text()).subscribe(html => {
 
         const newWindow = window.open('', '_blank');
-
-        // Check if the window was opened successfully
         if (newWindow) {
-          // Set the content of the new window
           newWindow.document.write(html);
-          newWindow.document.close(); // Important to close the document to trigger JavaScript execution
+          newWindow.document.close();
+
         } else {
           console.error('Failed to open new window');
         }
-
+        this.carregando = false;
       })
     });
-  
+
   }
 }
 
