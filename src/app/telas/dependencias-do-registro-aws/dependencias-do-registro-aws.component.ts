@@ -16,6 +16,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { Schema } from '../../../../amplify/data/resource';
 import { generateClient } from 'aws-amplify/api';
 
+import * as XLSX from 'xlsx';
+
 @Component({
   selector: 'app-dependencias-do-registro-aws',
   standalone: true,
@@ -117,6 +119,33 @@ export class DependenciasDoRegistroAwsComponent implements OnInit {
       })
     });
 
+  }
+
+  exeportarExcel(){
+console.log('export', this.dataSource);
+
+    const exportacao = this.dataSource.map(d => [
+ d.Nome,
+ d.Versao,
+ d.Descricao,
+ d.ContemVulnerabilidades ? 'Sim' : 'Não',
+ d.Licenca,
+ d.Projetos.join(', ')
+    ]);
+
+    const headers = ['Componente', 'Versão',  'Descrição', 'Contém vulnerabilidades', 'Licença', 'Projetos onde está referenciado'];
+
+  // Adicionando os headers à primeira linha
+  const sheetData = [headers, ...exportacao];
+
+  const ws: XLSX.WorkSheet = XLSX.utils.aoa_to_sheet(sheetData);
+    
+      // Criar um arquivo de Excel com a planilha
+      const wb: XLSX.WorkBook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, 'Inventário de componentes');
+  
+      // Gerar o arquivo e forçar o download
+      XLSX.writeFile(wb, `inventario_de_componentes_${this.dataRegistro}.xlsx`);
   }
 }
 

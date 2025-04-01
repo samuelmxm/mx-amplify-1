@@ -45,12 +45,15 @@ export class InventarioComponentesMainComponent implements OnInit {
     this.inventarioService.obterRegistros().subscribe(r => {
       if (r.data) {
         const registros = JSON.parse(r.data as string) as RegistroInventarioComponentes[];
-        console.log('Registros', registros);
         this.dataSource = registros;
         this.carregando = false;
       }
 
     });
+  }
+
+  exportarExcel(){
+    
   }
 
 
