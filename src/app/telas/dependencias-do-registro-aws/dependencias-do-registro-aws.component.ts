@@ -10,7 +10,7 @@ import { MatTableModule } from '@angular/material/table';
 import { RouterModule } from '@angular/router';
 import { InventarioService } from '../../servicos/inventarioService';
 import { HTMLDeProjeto } from '../../model/registro-inventario-componentes';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { Schema } from '../../../../amplify/data/resource';
@@ -24,12 +24,13 @@ import * as XLSX from 'xlsx';
   imports: [MatTableModule, MatButtonModule, MatIconModule, RouterModule, CommonModule, MatTooltipModule,
     MatProgressSpinnerModule
   ],
+  providers:[DatePipe],
   templateUrl: './dependencias-do-registro-aws.component.html',
   styleUrl: './dependencias-do-registro-aws.component.scss'
 })
 export class DependenciasDoRegistroAwsComponent implements OnInit {
   client;
-  constructor(private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute, private datePipe: DatePipe) {
     this.client = generateClient<Schema>();
   }
   dataSource: Dependencia[] = [];
@@ -145,7 +146,7 @@ console.log('export', this.dataSource);
       XLSX.utils.book_append_sheet(wb, ws, 'Inventário de componentes');
   
       // Gerar o arquivo e forçar o download
-      XLSX.writeFile(wb, `inventario_de_componentes_${this.dataRegistro}.xlsx`);
+      XLSX.writeFile(wb, `inventario_de_componentes_${this.datePipe.transform(this.dataRegistro, 'dd_MM_yyyy_HH_mm_ss')}.xlsx`);
   }
 }
 
